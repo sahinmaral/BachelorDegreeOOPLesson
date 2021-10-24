@@ -1,15 +1,19 @@
 package com.company;
 
+import jdk.swing.interop.SwingInterOpUtils;
+
 import java.util.List;
 import java.util.Random;
 
 public class PlayingArea {
     private Dustbin dustbin;
     private List<Player> Players;
+    private int totalScore;
 
     public PlayingArea(Dustbin dustbin , List<Player> players) {
         this.dustbin = dustbin;
         Players = players;
+        totalScore = 0;
     }
 
     public List<Player> getPlayers() {
@@ -28,12 +32,23 @@ public class PlayingArea {
         this.dustbin = dustbin;
     }
 
+    private boolean CheckIfDustbinCapacityIsReached(){
+        if (totalScore >= dustbin.getCapacity())
+            return true;
+        else
+            return false;
+    }
+
     public void TryBasket(){
-        for (int i = 1; i <= dustbin.getCapacity(); i++){
+        while(!CheckIfDustbinCapacityIsReached()){
             for(Player player : Players){
+                if (CheckIfDustbinCapacityIsReached())
+                    break;
+
                 Random rand = new Random();
                 int score = rand.nextInt(0,2);
                 player.setScore(player.getScore()+score);
+                totalScore += score;
             }
         }
 
