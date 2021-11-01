@@ -6,14 +6,22 @@ public class Ninja {
     private int attackPoint;
     private int diceRollPoint;
     private final int maxPercentAttack = 100;
-    private int minPercentAttack = 50;
+    private int minPercentAttack;
 
-    public Ninja(String name){
+    public Ninja(String name) {
         this.name = name;
         health = 10;
         attackPoint = 1;
+        minPercentAttack = 50;
     }
 
+    public int getMinPercentAttack() {
+        return minPercentAttack;
+    }
+
+    public void setMinPercentAttack(int minPercentAttack) {
+        this.minPercentAttack = minPercentAttack;
+    }
 
     public int getHealth() {
         return health;
@@ -39,19 +47,28 @@ public class Ninja {
         this.diceRollPoint = diceRollPoint;
     }
 
-    public boolean Defense(){
-        int randomNumber = (int) ((Math.random() * maxPercentAttack-minPercentAttack+1) + minPercentAttack);
+    public boolean Defense(Ninja enemyNinja) {
+        int randomNumber = (int) ((Math.random() * enemyNinja.maxPercentAttack - enemyNinja.minPercentAttack + 1) + enemyNinja.minPercentAttack);
         System.out.println(randomNumber);
-        return randomNumber > 50 ? true : false;
+        if (randomNumber > enemyNinja.minPercentAttack){
+            enemyNinja.minPercentAttack += 1;
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
-    public void Attack(Ninja enemyNinja){
-        if (!enemyNinja.Defense()){
-            System.out.println("Successfull hit from "+enemyNinja.getName() + " by "+enemyNinja.getAttackPoint() + " hit");
-            enemyNinja.setHealth(enemyNinja.getHealth()-getAttackPoint());
-        }
-        else {
-            System.out.println("Missed , maybe next time "+enemyNinja.getName());
+    public void Attack(Ninja enemyNinja) {
+        if (!enemyNinja.Defense(enemyNinja)) {
+            if (this.minPercentAttack != 70) {
+                this.minPercentAttack += 1;
+            }
+
+            System.out.println("Successfull hit from " + enemyNinja.getName() + " by " + enemyNinja.getAttackPoint() + " hit");
+            enemyNinja.setHealth(enemyNinja.getHealth() - getAttackPoint());
+        } else {
+            System.out.println("Missed , maybe next time " + enemyNinja.getName());
         }
 
 
