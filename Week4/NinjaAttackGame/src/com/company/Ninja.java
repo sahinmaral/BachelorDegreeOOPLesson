@@ -49,7 +49,7 @@ public class Ninja {
 
     public boolean Defense(Ninja enemyNinja) {
         int randomNumber = (int) ((Math.random() * enemyNinja.maxPercentAttack - enemyNinja.minPercentAttack + 1) + enemyNinja.minPercentAttack);
-        System.out.println(randomNumber);
+/*        System.out.println(randomNumber);*/
         if (randomNumber > enemyNinja.minPercentAttack){
             enemyNinja.minPercentAttack += 1;
             return true;

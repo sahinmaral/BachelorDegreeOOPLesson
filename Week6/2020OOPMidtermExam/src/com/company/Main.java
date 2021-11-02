@@ -2,10 +2,7 @@ package com.company;
 
 import com.company.CircleProblem.IntersectingCircle;
 import com.company.DiceProblem.Dice;
-import com.company.InheritanceProblem.Circle;
-import com.company.InheritanceProblem.Cube;
-import com.company.InheritanceProblem.Rectangle;
-import com.company.InheritanceProblem.Square;
+import com.company.InheritanceProblem.*;
 
 public class Main {
 
@@ -21,21 +18,26 @@ public class Main {
         Rectangle rectangle1 = new Rectangle(3,4);
         Circle circle1 = new Circle(5);
         Cube cube1 = new Cube(7);
-
+        Cylinder cylinder1 = new Cylinder(2,4);
+        Prism prism1 = new Prism(2,3,4);
 
         square1.GetInfosAboutShape();
-
         System.out.println();
 
         rectangle1.GetInfosAboutShape();
-
         System.out.println();
 
         circle1.GetInfosAboutShape();
-
         System.out.println();
 
         cube1.GetInfosAboutShape();
+        System.out.println();
+
+        cylinder1.GetInfosAboutShape();
+        System.out.println();
+
+        prism1.GetInfosAboutShape();
+        System.out.println();
     }
 
     private static void CircleIntersection() {
@@ -57,4 +59,6 @@ public class Main {
 
         dice.report();
     }
+
+
 }

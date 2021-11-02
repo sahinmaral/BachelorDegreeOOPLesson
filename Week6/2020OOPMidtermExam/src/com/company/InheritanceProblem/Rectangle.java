@@ -19,7 +19,6 @@ public class Rectangle extends TwoDimensionShape{
         return 2 * (side1+side2);
     }
 
-
     public double getSide2() {
         return side2;
     }
